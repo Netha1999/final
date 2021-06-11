@@ -15,7 +15,7 @@ stage ("Docker Image build") {
        }
 steps {
 	script {
-	  app = docker.build("netha0416/041`6")
+	  app = docker.build("netha0416/69")
           app.inside {
               sh 'echo $(curl localhost:8080)'
 }
