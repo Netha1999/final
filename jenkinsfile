@@ -15,7 +15,7 @@ stage ("Docker Image build") {
        }
 steps {
 	script {
-	  app = docker.build("netha0416/041`6")
+	  app = docker.build("netha0416/0416")
           app.inside {
               sh 'echo $(curl localhost:8080)'
 }
@@ -32,4 +32,3 @@ steps {
        app.push("${env.BUILD_NUMBER}")
        app.push("latest")
     }}}}}}
-
