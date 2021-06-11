@@ -1,4 +1,4 @@
-peline {
+pipeline {
 agent any
 stages {
 stage ("SCM"){
@@ -8,16 +8,4 @@ stage ("Build"){
 steps {
 		sh 'mvn clean'
 		sh 'mvn install' }
-}
-stage ("Docker Image build") {
-  when {
-     branch 'master'
-       }
-steps {
-	script {
-	  app = docker.build("netha0416/69")
-          app.inside {
-              sh 'echo $(curl localhost:8080)'
-}
-}
-}}}}
+}}}
