@@ -10,6 +10,9 @@ steps {
 		sh 'mvn install' }
 }
 stage ("Docker Image build") {
+	 when {
+     branch 'master'
+       }
 steps {
 	script {
 	  app = docker.build("netha0416/0416")
@@ -20,7 +23,9 @@ steps {
 }
 }
 stage("Push Docker Image") {
- 
+  when {
+     branch 'master'
+       }
 steps {
   script {
     docker.withRegistry('https://registry.hub.docker.com', 'docker') {
