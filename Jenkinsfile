@@ -1,3 +1,4 @@
+
 pipeline {
 agent any
 stages {
@@ -56,9 +57,6 @@ steps {
                 }
             }
         }
-stage("email notification"){
-mail bcc: '', body: 'email notification', cc: '', from: '', replyTo: '', subject: 'emailnotification', to: 'nethanehru1999@gmail.com'
-}
 
 }
 }
