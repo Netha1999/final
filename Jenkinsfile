@@ -6,16 +6,16 @@ steps {git 'https://github.com/Netha1999/final.git'}
 }
 stage ("Build"){
 steps {
-		sh 'mvn clean'
-		sh 'mvn install' }
+                sh 'mvn clean'
+                sh 'mvn install' }
 }
 stage ("Docker Image build") {
-	 when {
+         when {
      branch 'master'
        }
 steps {
-	script {
-	  app = docker.build("netha0416/0416")
+        script {
+          app = docker.build("netha0416/0416")
           app.inside {
               sh 'echo $(curl localhost:8080)'
 }
@@ -41,7 +41,7 @@ steps {
             }
             steps {
                 input 'Deploy to Production'
-                milestone(1)
+ milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'web', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
                         sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$prod_ip \"docker pull netha0416/0416:${env.BUILD_NUMBER}\""
@@ -56,6 +56,9 @@ steps {
                 }
             }
         }
-    }
+stage("email notification"){
+mail bcc: '', body: 'email notification', cc: '', from: '', replyTo: '', subject: 'emailnotification', to: 'nethanehru1999@gmail.com'
 }
 
+}
+}
